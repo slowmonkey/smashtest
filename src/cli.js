@@ -892,6 +892,6 @@ function plural(count) {
         }
     }
     catch(e) {
-        onError(e, fullRun && PROGRESS_BAR_ON);
+        onError(e, fullRun && runner.showProgressBar);
     }
 })();
