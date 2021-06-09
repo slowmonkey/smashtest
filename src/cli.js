@@ -26,7 +26,6 @@ const hRule = chalk.gray("─".repeat(process.stdout.columns));
 
 const CONFIG_FILENAME = 'smashtest.json';
 
-const PROGRESS_BAR_ON = true;
 let fullRun = false;
 
 console.log(hRule);
@@ -162,6 +161,7 @@ Options
   --no-debug                               Fail if there are any $'s or ~'s. Useful to prevent debugging in CI.
   --output-errors=<true/false>             Whether to output all errors to console
   --p:<name>="<value>"                     Set a persistent variable
+  --progress-bar=<true/false>              Whether to output a progress bar
   --random=<true/false>                    Whether to randomize the order of branches
   --recursive                              Scan the current directory and subdirectories for .smash files
   --repl                                   Open the REPL (drive Smashtest from command line) (-r)
@@ -211,6 +211,10 @@ Options
 
             case "p":
                 runner.persistent[varName] = value;
+                break;
+
+            case "progress-bar":
+                runner.showProgressBar = boolValue();
                 break;
 
             case "random":
@@ -792,7 +796,7 @@ function plural(count) {
             let progressBar = null;
             fullRun = true;
 
-            if(PROGRESS_BAR_ON) {
+            if(runner.showProgressBar) {
                 // Progress bar
                 progressBar = generateProgressBar(true);
                 progressBar.start(tree.counts.totalSteps, tree.counts.totalStepsComplete);

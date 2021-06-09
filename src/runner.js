@@ -26,6 +26,7 @@ class Runner {
         this.outputErrors = true;        // If true, output errors to console
         this.random = true;              // If true, randomize the order of branches
         this.screenshots = false;        // If true, take screenshots before and after each step
+        this.showProgressBar = true;     // If true, shows progress bar in the output of the console.
         this.skipPassed = undefined;     // If true, carry over branches that passed last time
         this.testServer = undefined;     // Location of test server (e.g., http://localhost:4444/wd/hub for selenium server)
 
